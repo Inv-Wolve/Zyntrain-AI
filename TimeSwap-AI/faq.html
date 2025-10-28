@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Zyntrain</title>
+    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="stylesheet" href="./styles/faq.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-brain nav-icon"></i>
+                <span class="brand-text">Zyntrain</span>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#how-it-works" class="nav-link">How It Works</a>
+                <a href="#pricing" class="nav-link">Pricing</a>
+                <a href="auth.html" class="nav-link nav-cta">Get Started</a>
+            </div>
+            <div class="nav-toggle" id="navToggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="faq-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Frequently Asked Questions</h1>
+                <p>Find answers to common questions about Zyntrain AI</p>
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="faqSearch" placeholder="Search for answers...">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Content -->
+    <section class="faq-content">
+        <div class="container">
+            <div class="faq-categories">
+                <button class="category-btn active" data-category="all">All Questions</button>
+                <button class="category-btn" data-category="getting-started">Getting Started</button>
+                <button class="category-btn" data-category="features">Features</button>
+                <button class="category-btn" data-category="ai">AI Assistant</button>
+                <button class="category-btn" data-category="privacy">Privacy & Security</button>
+                <button class="category-btn" data-category="technical">Technical</button>
+            </div>
+
+            <div class="faq-list" id="faqList">
+                <!-- Getting Started -->
+                <div class="faq-item" data-category="getting-started">
+                    <div class="faq-question">
+                        <h3>How do I get started with Zyntrain AI?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Getting started is simple! Click "Get Started" on our homepage, create your free account, and you'll be taken to your dashboard. From there, you can add your first tasks and let our AI start optimizing your schedule.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="getting-started">
+                    <div class="faq-question">
+                        <h3>Is Zyntrain AI really free?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! Zyntrain AI is completely free forever. We believe everyone deserves access to powerful productivity tools. All features including AI optimization, calendar integration, and analytics are included at no cost.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="getting-started">
+                    <div class="faq-question">
+                        <h3>Do I need to download any software?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>No downloads required! Zyntrain AI runs entirely in your web browser. Simply visit our website and start using it immediately. It works on all modern browsers and devices.</p>
+                    </div>
+                </div>
+
+                <!-- Features -->
+                <div class="faq-item" data-category="features">
+                    <div class="faq-question">
+                        <h3>How does the AI task prioritization work?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our AI analyzes multiple factors including deadlines, your energy patterns, task complexity, and historical completion data. It then suggests the optimal order for your tasks to maximize productivity and reduce stress.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="features">
+                    <div class="faq-question">
+                        <h3>Can I integrate with Google Calendar?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! Zyntrain AI seamlessly integrates with Google Calendar. Your existing meetings and events are automatically considered when the AI optimizes your schedule, ensuring no conflicts occur.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="features">
+                    <div class="faq-question">
+                        <h3>What is energy-based scheduling?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Energy-based scheduling matches your tasks with your natural energy levels throughout the day. High-energy tasks are scheduled during your peak hours, while routine tasks are placed during lower-energy periods.</p>
+                    </div>
+                </div>
+
+                <!-- AI Assistant -->
+                <div class="faq-item" data-category="ai">
+                    <div class="faq-question">
+                        <h3>How many AI chat messages can I send per day?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You can send up to 10 AI chat messages per day. This limit helps us maintain service quality while keeping the platform free for everyone. The limit resets every 24 hours.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="ai">
+                    <div class="faq-question">
+                        <h3>What can I ask the AI assistant?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You can ask about task prioritization, schedule optimization, productivity tips, time management strategies, and get personalized recommendations based on your work patterns and preferences.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="ai">
+                    <div class="faq-question">
+                        <h3>How does the AI learn my patterns?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>The AI observes your task completion patterns, preferred working hours, energy levels, and how you respond to suggestions. Over time, it becomes more accurate at predicting what works best for you.</p>
+                    </div>
+                </div>
+
+                <!-- Privacy & Security -->
+                <div class="faq-item" data-category="privacy">
+                    <div class="faq-question">
+                        <h3>Is my data secure?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! We use industry-standard encryption and security measures. Your data is stored securely and never shared with third parties. Read our <a href="Legal/Privacy Policy.html">Privacy Policy</a> for full details.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="privacy">
+                    <div class="faq-question">
+                        <h3>Can I export my data?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! You can export all your data at any time from your profile settings. We believe in data portability and your right to access your information.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="privacy">
+                    <div class="faq-question">
+                        <h3>Do you use my data to train AI models?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>No, we do not use your personal data to train AI models. Your tasks, schedules, and personal information remain private and are only used to provide you with personalized recommendations.</p>
+                    </div>
+                </div>
+
+                <!-- Technical -->
+                <div class="faq-item" data-category="technical">
+                    <div class="faq-question">
+                        <h3>What browsers are supported?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Zyntrain AI works on all modern browsers including Chrome, Firefox, Safari, and Edge. We recommend using the latest version of your preferred browser for the best experience.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="technical">
+                    <div class="faq-question">
+                        <h3>Does it work on mobile devices?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! Zyntrain AI is fully responsive and works great on smartphones and tablets. You can access all features from any device with an internet connection.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="technical">
+                    <div class="faq-question">
+                        <h3>What happens if I lose internet connection?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Zyntrain AI automatically syncs your data when you reconnect. Any changes made offline will be saved locally and synchronized once your connection is restored.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="technical">
+                    <div class="faq-question">
+                        <h3>How often does the data sync?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Data syncs automatically every time you make changes. Additionally, the system performs background syncs every 5 minutes to ensure your data is always up to date across all your devices.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-footer">
+                <div class="contact-support">
+                    <h3>Still have questions?</h3>
+                    <p>Can't find what you're looking for? Our support team is here to help.</p>
+                    <a href="./Legal/Support.html" class="btn btn-primary">
+                        <i class="fas fa-headphones"></i>
+                        Contact Support
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Theme Toggle Button -->
+    <div class="theme-toggle-container">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+
+    <script src="./scripts/main.js"></script>
+    <script src="./scripts/faq.js"></script>
+    <script>
+        // Initialize theme toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            initThemeToggle();
+        });
+        
+        function initThemeToggle() {
+            const themeToggle = document.getElementById('themeToggle');
+            if (!themeToggle) return;
+            
+            // Update icon based on current theme
+            const updateThemeIcon = () => {
+                const currentTheme = ThemeManager.getCurrentTheme();
+                const icon = themeToggle.querySelector('i');
+                if (currentTheme === 'dark') {
+                    icon.className = 'fas fa-sun';
+                    themeToggle.title = 'Switch to Light Mode';
+                } else {
+                    icon.className = 'fas fa-moon';
+                    themeToggle.title = 'Switch to Dark Mode';
+                }
+            };
+            
+            updateThemeIcon();
+            
+            themeToggle.addEventListener('click', () => {
+                const newTheme = ThemeManager.toggleTheme();
+                updateThemeIcon();
+                Utils.showNotification(`Switched to ${newTheme} mode`, 'success');
+            });
+        }
+    </script>
+</body>
+</html>

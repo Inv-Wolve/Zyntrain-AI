@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#2563eb">
+    <title>Dashboard - Zyntrain</title>
+    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="stylesheet" href="./styles/dashboard.css">
+    <link rel="stylesheet" href="./styles/onboarding.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Cinematic Loading Screen -->
+    <div class="loading-screen" id="dashboardLoading">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">Loading Dashboard...</div>
+        </div>
+    </div>
+
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="brand">
+                    <i class="fas fa-brain"></i>
+                    <span>Zyntrain</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-section="overview">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Overview</span>
+                </a>
+                <a href="#" class="nav-item" data-section="tasks">
+                    <i class="fas fa-tasks"></i>
+                    <span>Tasks</span>
+                </a>
+                <a href="#" class="nav-item" data-section="calendar">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Calendar</span>
+                </a>
+                <a href="#" class="nav-item" data-section="ai-assistant">
+                    <i class="fas fa-robot"></i>
+                    <span>AI Assistant</span>
+                </a>
+                <a href="#" class="nav-item" data-section="analytics">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Analytics</span>
+                </a>
+                <a href="#" class="nav-item" data-section="settings">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+                <a href="profile.html" class="nav-item">
+                    <i class="fas fa-user"></i>
+                    <span>Profile</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="#" class="nav-item logout" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="main-header">
+                <div class="header-left">
+                    <h1 id="pageTitle">Dashboard Overview</h1>
+                    <p id="pageSubtitle">Welcome back! Here's what's happening today.</p>
+                </div>
+                <div class="header-right">
+                    <div class="energy-indicator">
+                        <i class="fas fa-bolt"></i>
+                        <span>Energy: <strong id="energyLevel">High</strong></span>
+                        <div class="energy-bar">
+                            <div class="energy-fill" id="energyFill" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="user-avatar" id="userAvatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Overview Section -->
+            <section id="overview" class="section active">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="totalTasks">0</h3>
+                            <p>Active Tasks</p>
+                        </div>
+                        <div class="stat-trend positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span id="totalTasksTrend">--</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="completedTasks">0</h3>
+                            <p>Completed Today</p>
+                        </div>
+                        <div class="stat-trend positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span id="completedTasksTrend">--</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="focusTime">0h</h3>
+                            <p>Focus Time</p>
+                        </div>
+                        <div class="stat-trend positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span id="focusTimeTrend">--</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="aiSuggestions">0</h3>
+                            <p>AI Suggestions</p>
+                        </div>
+                        <div class="stat-trend positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span id="aiSuggestionsTrend">--</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-grid">
+                    <div class="ai-recommendations card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-robot"></i> AI Recommendations</h3>
+                            <div class="ai-status active">
+                                <span class="status-dot"></span>
+                                AI Active
+                            </div>
+                        </div>
+                        <div class="recommendations-list" id="aiRecommendations">
+                            <div class="empty-state">
+                                <i class="fas fa-brain"></i>
+                                <h4>AI Learning Your Patterns</h4>
+                                <p>Add some tasks and I'll provide personalized recommendations.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="today-schedule card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-calendar-day"></i> Today's Schedule</h3>
+                            <button class="btn btn-sm btn-primary" data-action="optimize-schedule">
+                                <i class="fas fa-wand-magic-sparkles"></i>
+                                Optimize
+                            </button>
+                        </div>
+                        <div class="schedule-timeline" id="todaySchedule">
+                            <div class="empty-schedule">
+                                <i class="fas fa-calendar-plus"></i>
+                                <h4>No tasks scheduled</h4>
+                                <p>Add tasks with deadlines to see your optimized schedule.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tasks Section -->
+            <section id="tasks" class="section">
+                <div class="section-header">
+                    <div class="header-actions">
+                        <button class="btn btn-primary" id="addTaskBtn">
+                            <i class="fas fa-plus"></i>
+                            Add Task
+                        </button>
+                        <button class="btn btn-secondary" id="aiOptimizeBtn">
+                            <i class="fas fa-robot"></i>
+                            AI Optimize
+                        </button>
+                    </div>
+                </div>
+
+                <div class="tasks-filters">
+                    <div class="filter-tabs">
+                        <button class="filter-tab active" data-filter="all">All Tasks</button>
+                        <button class="filter-tab" data-filter="today">Today</button>
+                        <button class="filter-tab" data-filter="high">High Priority</button>
+                        <button class="filter-tab" data-filter="completed">Completed</button>
+                    </div>
+                    <div class="task-stats">
+                        <span class="stat">
+                            <i class="fas fa-tasks"></i>
+                            <span id="activeTaskCount">0 active</span>
+                        </span>
+                        <span class="stat">
+                            <i class="fas fa-check-circle"></i>
+                            <span id="completedTaskCount">0 completed</span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="tasks-container">
+                    <div class="tasks-list" id="tasksList">
+                        <div class="empty-state">
+                            <i class="fas fa-tasks"></i>
+                            <h4>No tasks yet</h4>
+                            <p>Add your first task to get started with AI-powered productivity.</p>
+                            <button class="btn btn-primary" id="addFirstTaskBtnEmpty">
+                                <i class="fas fa-plus"></i>
+                                Add Your First Task
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Calendar Section -->
+            <section id="calendar" class="section">
+                <div class="calendar-header">
+                    <div class="calendar-nav">
+                        <button class="btn btn-icon" id="prevWeek">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <h3 id="currentWeek">Loading...</h3>
+                        <button class="btn btn-icon" id="nextWeek">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    <div class="calendar-controls">
+                        <button class="btn btn-sm btn-outline" id="todayBtn">Today</button>
+                        <button class="btn btn-sm btn-primary" id="syncCalendarBtn">
+                            <i class="fas fa-sync"></i>
+                            <span id="syncCalendarText">Sync Google Calendar</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="calendar-grid" id="calendarGrid">
+                    <div class="loading-calendar">
+                        <div class="loading-spinner"></div>
+                        <p>Loading calendar...</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AI Assistant Section -->
+            <section id="ai-assistant" class="section">
+                <div class="ai-chat-container">
+                    <div class="chat-header">
+                        <div class="ai-avatar">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="ai-info">
+                            <h3>Zyntrain AI Assistant</h3>
+                            <p class="ai-status-text">Ready to help optimize your schedule</p>
+                        </div>
+                        <div class="chat-actions">
+                            <button class="btn btn-sm btn-outline" id="clearChatBtn">Clear Chat</button>
+                        </div>
+                    </div>
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="message ai-message">
+                            <div class="message-avatar">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div class="message-content">
+                                <p>Hello! I'm your Zyntrain AI assistant. I can help you optimize your schedule, suggest task priorities, and provide productivity insights. What would you like to know?</p>
+                                <div class="message-time">Just now</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-input-container">
+                        <div class="suggested-questions">
+                            <button class="suggestion-btn" data-question="What should I focus on right now?">
+                                <i class="fas fa-bullseye"></i> What should I focus on right now?
+                            </button>
+                            <button class="suggestion-btn" data-question="How can I improve my productivity?">
+                                <i class="fas fa-chart-line"></i> How can I improve my productivity?
+                            </button>
+                            <button class="suggestion-btn" data-question="Reschedule my tasks for optimal energy">
+                                <i class="fas fa-bolt"></i> Optimize for my energy levels
+                            </button>
+                        </div>
+                        <div class="chat-input">
+                            <input type="text" id="chatInput" placeholder="Ask me anything about your productivity...">
+                            <button class="btn btn-primary" id="sendMessageBtn">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Analytics Section -->
+            <section id="analytics" class="section">
+                <div class="analytics-grid">
+                    <div class="analytics-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-chart-line"></i> Productivity Trends</h3>
+                            <select class="period-selector">
+                                <option>Last 7 days</option>
+                                <option>Last 30 days</option>
+                                <option>Last 3 months</option>
+                            </select>
+                        </div>
+                        <div class="chart-container">
+                            <div id="productivityChart" class="productivity-chart">
+                                <div class="chart-placeholder">
+                                    <i class="fas fa-chart-area"></i>
+                                    <p>Productivity chart will appear here as you complete tasks</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="analytics-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-clock"></i> Time Distribution</h3>
+                        </div>
+                        <div class="time-breakdown">
+                            <div class="time-item">
+                                <div class="time-label">
+                                    <span class="color-indicator work"></span>
+                                    Deep Work
+                                </div>
+                                <div class="time-value" id="deepWorkTime">0h (0%)</div>
+                            </div>
+                            <div class="time-item">
+                                <div class="time-label">
+                                    <span class="color-indicator meetings"></span>
+                                    Meetings
+                                </div>
+                                <div class="time-value" id="meetingsTime">0h (0%)</div>
+                            </div>
+                            <div class="time-item">
+                                <div class="time-label">
+                                    <span class="color-indicator admin"></span>
+                                    Admin Tasks
+                                </div>
+                                <div class="time-value" id="adminTime">0h (0%)</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="analytics-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-target"></i> Goal Progress</h3>
+                        </div>
+                        <div class="goals-list">
+                            <div class="goal-item">
+                                <div class="goal-info">
+                                    <h4 id="primaryGoalTitle">Set Your First Goal</h4>
+                                    <p id="primaryGoalDescription">Add tasks to track your progress</p>
+                                </div>
+                                <div class="goal-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" id="primaryGoalProgress" style="width: 0%"></div>
+                                    </div>
+                                    <span id="primaryGoalPercentage">0%</span>
+                                </div>
+                            </div>
+                            <div class="goal-item">
+                                <div class="goal-info">
+                                    <h4>Daily Focus Time</h4>
+                                    <p id="focusTimeTarget">2 hours target</p>
+                                </div>
+                                <div class="goal-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" id="focusTimeProgress" style="width: 0%"></div>
+                                    </div>
+                                    <span id="focusTimeActual">0h</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section id="settings" class="section">
+                <!-- Settings content will be dynamically generated -->
+            </section>
+        </main>
+    </div>
+
+    <!-- Task Modal -->
+    <div class="modal" id="taskModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Add New Task</h3>
+                <button class="modal-close" id="closeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="taskForm" class="modal-form">
+                <div class="input-group">
+                    <label for="taskTitle">Task Title</label>
+                    <input type="text" id="taskTitle" name="title" required>
+                </div>
+                <div class="input-group">
+                    <label for="taskDescription">Description</label>
+                    <textarea id="taskDescription" name="description" rows="3"></textarea>
+                </div>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label for="taskPriority">Priority</label>
+                        <select id="taskPriority" name="priority">
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                            <option value="urgent">Urgent</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="taskCategory">Category</label>
+                        <select id="taskCategory" name="category">
+                            <option value="work">Work</option>
+                            <option value="personal">Personal</option>
+                            <option value="health">Health</option>
+                            <option value="learning">Learning</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label for="taskDeadline">Deadline</label>
+                        <input type="datetime-local" id="taskDeadline" name="deadline">
+                    </div>
+                    <div class="input-group">
+                        <label for="taskDuration">Duration (minutes)</label>
+                        <input type="number" id="taskDuration" name="duration" min="5" step="5" value="30">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="taskEnergy">Energy Required</label>
+                    <select id="taskEnergy" name="energy">
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                </div>
+                <div class="field-help">
+                    <i class="fas fa-info-circle"></i>
+                    Tasks with deadlines will auto-sync to Google Calendar if connected
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-outline" id="cancelTask">Cancel</button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i>
+                        Save Task
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Theme Toggle Button -->
+    <div class="theme-toggle-container">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+
+    <script src="./scripts/main.js"></script>
+    <script src="./scripts/onboarding.js"></script>
+    <script src="./scripts/dashboard.js"></script>
+    <script>
+        // Initialize dashboard page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize theme toggle
+            initThemeToggle();
+            
+            // Check for calendar connection status from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('calendar') === 'connected') {
+                setTimeout(() => {
+                    Utils.showNotification('Google Calendar connected successfully!', 'success');
+                    // Clean up URL
+                    window.history.replaceState({}, document.title, window.location.pathname);
+                }, 1000);
+            } else if (urlParams.get('error') === 'calendar_auth_failed') {
+                setTimeout(() => {
+                    const message = urlParams.get('message');
+                    let errorMessage = 'Google Calendar connection failed. Please try again.';
+                    
+                    if (message === 'access_denied') {
+                        errorMessage = 'Calendar access was denied. You can try connecting again anytime.';
+                    } else if (message === 'oauth_not_configured') {
+                        errorMessage = 'Google Calendar integration is not configured. Please contact support.';
+                    }
+                    
+                    Utils.showNotification(errorMessage, 'error');
+                    // Clean up URL
+                    window.history.replaceState({}, document.title, window.location.pathname);
+                }, 1000);
+            } else if (urlParams.get('error') === 'calendar_not_configured') {
+                setTimeout(() => {
+                    Utils.showNotification('Google Calendar integration is temporarily unavailable. Please contact support.', 'info');
+                    // Clean up URL
+                    window.history.replaceState({}, document.title, window.location.pathname);
+                }, 1000);
+            }
+            
+            setTimeout(() => {
+                const loadingScreen = document.getElementById('dashboardLoading');
+                if (loadingScreen) {
+                    loadingScreen.classList.add('hidden');
+                }
+            }, 1500);
+        });
+        
+        function initThemeToggle() {
+            const themeToggle = document.getElementById('themeToggle');
+            if (!themeToggle) return;
+            
+            // Update icon based on current theme
+            const updateThemeIcon = () => {
+                const currentTheme = ThemeManager.getCurrentTheme();
+                const icon = themeToggle.querySelector('i');
+                if (currentTheme === 'dark') {
+                    icon.className = 'fas fa-sun';
+                    themeToggle.title = 'Switch to Light Mode';
+                } else {
+                    icon.className = 'fas fa-moon';
+                    themeToggle.title = 'Switch to Dark Mode';
+                }
+            };
+            
+            updateThemeIcon();
+            
+            themeToggle.addEventListener('click', () => {
+                const newTheme = ThemeManager.toggleTheme();
+                updateThemeIcon();
+                Utils.showNotification(`Switched to ${newTheme} mode`, 'success');
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support - Zyntrain</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/legal.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <i class="fas fa-shield-check nav-icon"></i>
+                Zyntrain
+            </a>
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="Support.html" class="nav-link">Support</a>
+                <a href="Privacy Policy.html" class="nav-link">Privacy</a>
+                <a href="Terms Of Service.html" class="nav-link">Terms</a>
+            </div>
+            <button class="nav-toggle" id="navToggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="page">
+        <div class="page-hero">
+            <div class="container">
+                <h1><i class="fas fa-headphones"></i> Get Support</h1>
+                <p>Need help? We're here to assist you. Fill out the form below and we'll get back to you as soon as possible.</p>
+            </div>
+        </div>
+
+        <div class="page-content">
+            <div class="container">
+                <div class="form-card">
+                    <div id="successMessage" class="success-message">
+                        <i class="fas fa-check-circle"></i>
+                        Thank you for contacting us! We've received your message and will respond within 24 hours.
+                    </div>
+                    
+                    <h2 class="form-title">Contact Support</h2>
+                    
+                    <form id="supportForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName" class="form-label">First Name *</label>
+                                <input type="text" id="firstName" name="firstName" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName" class="form-label">Last Name *</label>
+                                <input type="text" id="lastName" name="lastName" class="form-input" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email Address *</label>
+                            <input type="email" id="email" name="email" class="form-input" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject" class="form-label">Subject *</label>
+                            <select id="subject" name="subject" class="form-select" required>
+                                <option value="">Select a subject</option>
+                                <option value="General Inquiry">General Inquiry</option>
+                                <option value="Privacy Policy Question">Privacy Policy Question</option>
+                                <option value="Terms of Service Question">Terms of Service Question</option>
+                                <option value="Data Request">Data Request</option>
+                                <option value="Account Issue">Account Issue</option>
+                                <option value="Technical Support">Technical Support</option>
+                                <option value="Integration Help">Integration Help</option>
+                                <option value="Feature Request">Feature Request</option>
+                                <option value="Bug Report">Bug Report</option>
+                                <option value="Legal Concern">Legal Concern</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="priority" class="form-label">Priority Level</label>
+                            <select id="priority" name="priority" class="form-select">
+                                <option value="low">Low - General question</option>
+                                <option value="medium" selected>Medium - Standard inquiry</option>
+                                <option value="high">High - Urgent issue</option>
+                                <option value="critical">Critical - Service disruption</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message" class="form-label">Message *</label>
+                            <textarea id="message" name="message" class="form-textarea" placeholder="Please describe your question or issue in detail..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">
+                            <i class="fas fa-paper-plane"></i>
+                            Send Support Request
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Support Information -->
+                <div class="cards-grid" style="margin-top: var(--space-16);">
+                    <div class="card" style="cursor: default; transform: none;">
+                        <div class="card-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3>Response Time</h3>
+                        <p>We typically respond to support requests within 24 hours during business days. Critical issues are prioritized and handled immediately.</p>
+                    </div>
+                    
+                    <div class="card" style="cursor: default; transform: none;">
+                        <div class="card-icon">
+                            <i class="fas fa-shield"></i>
+                        </div>
+                        <h3>Privacy First</h3>
+                        <p>Your support requests are handled with the utmost confidentiality and security. We never share your information with third parties.</p>
+                    </div>
+
+                    <div class="card" style="cursor: default; transform: none;">
+                        <div class="card-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Expert Team</h3>
+                        <p>Our support team consists of experienced professionals who understand both the technical and user experience aspects of Zyntrain AI.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('navToggle').addEventListener('click', function() {
+            const navMenu = document.getElementById('navMenu');
+            const navToggle = document.getElementById('navToggle');
+            
+            navMenu.classList.toggle('active');
+            navToggle.classList.toggle('active');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            const navMenu = document.getElementById('navMenu');
+            const navToggle = document.getElementById('navToggle');
+            
+            if (!navMenu.contains(e.target) && !navToggle.contains(e.target)) {
+                navMenu.classList.remove('active');
+                navToggle.classList.remove('active');
+            }
+        });
+
+        // Support form submission
+        document.getElementById('supportForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const webhookUrl = "https://discord.com/api/webhooks/1396153590078242928/zT2s2f4BOhclESVgVC_ZLhpBRiNEWArhpiV2NB9BdR8vTluu87-gV4L5KU2iVglF6SsS";
+            
+            // Create Discord embed
+            const embed = {
+                title: '🎫 New Zyntrain AI Support Request',
+                color: 0x3B82F6,
+                fields: [
+                    {
+                        name: '👤 Name',
+                        value: `${formData.get('firstName')} ${formData.get('lastName')}`,
+                        inline: true
+                    },
+                    {
+                        name: '📧 Email',
+                        value: formData.get('email'),
+                        inline: true
+                    },
+                    {
+                        name: '📋 Subject',
+                        value: formData.get('subject'),
+                        inline: true
+                    },
+                    {
+                        name: '⚠️ Priority',
+                        value: formData.get('priority').toUpperCase(),
+                        inline: true
+                    },
+                    {
+                        name: '💬 Message',
+                        value: formData.get('message')
+                    }
+                ],
+                timestamp: new Date().toISOString(),
+                footer: {
+                    text: 'Zyntrain Support System'
+                }
+            };
+
+            try {
+                const response = await fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        content: `📞 **New Support Request** <@1145301764615176282>`,
+                        embeds: [embed]
+                    })
+                });
+
+                if (response.ok) {
+                    // Show success message
+                    document.getElementById('successMessage').classList.add('show');
+                    
+                    // Reset form
+                    this.reset();
+                    
+                    // Scroll to success message
+                    document.getElementById('successMessage').scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center'
+                    });
+                    
+                    // Hide success message after 5 seconds
+                    setTimeout(() => {
+                        document.getElementById('successMessage').classList.remove('show');
+                    }, 5000);
+                } else {
+                    throw new Error('Failed to send message');
+                }
+            } catch (error) {
+                alert('Sorry, there was an error sending your message. Please try emailing us directly at layyin2424@gmail.com');
+                console.error('Error:', error);
+            }
+        });
+    </script>
+</body>
+</html>

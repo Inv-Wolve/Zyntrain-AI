@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#2563eb">
+    <title>Profile - Zyntrain</title>
+    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="stylesheet" href="./styles/profile.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Cinematic Loading Screen -->
+    <div class="loading-screen" id="profileLoading">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">Loading Profile...</div>
+        </div>
+    </div>
+
+    <div class="profile-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="brand">
+                    <i class="fas fa-robot"></i>
+                    <span>Zyntrain</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item active" data-section="profile">
+                    <i class="fas fa-user"></i>
+                    <span>Profile</span>
+                </a>
+                <a href="#" class="nav-item" data-section="preferences">
+                    <i class="fas fa-cog"></i>
+                    <span>Preferences</span>
+                </a>
+                <a href="#" class="nav-item" data-section="integrations">
+                    <i class="fas fa-plug"></i>
+                    <span>Integrations</span>
+                </a>
+                <a href="#" class="nav-item" data-section="subscription">
+                    <i class="fas fa-credit-card"></i>
+                    <span>Subscription</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="#" class="nav-item logout" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="main-header">
+                <div class="header-left">
+                    <h1>Profile Settings</h1>
+                    <p>Manage your account and customize your Zyntrain experience</p>
+                </div>
+                <div class="header-right">
+                    <button class="btn btn-primary" id="saveAllBtn">
+                        <i class="fas fa-save"></i>
+                        Save Changes
+                    </button>
+                </div>
+            </header>
+
+            <!-- Profile Section -->
+            <section id="profile" class="section active">
+                <div class="profile-grid">
+                    <div class="profile-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-user"></i> Personal Information</h3>
+                        </div>
+                        <div class="profile-avatar-section">
+                            <div class="avatar-container">
+                                <div class="avatar" id="profileAvatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <button class="avatar-edit" id="editAvatarBtn">
+                                    <i class="fas fa-camera"></i>
+                                </button>
+                            </div>
+                            <div class="avatar-info">
+                                <h4 id="userName">Loading...</h4>
+                                <p id="userEmail">Loading...</p>
+                                <div class="user-stats">
+                                    <div class="stat">
+                                        <span class="stat-value">0</span>
+                                        <span class="stat-label">Tasks Completed</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="stat-value">0</span>
+                                        <span class="stat-label">Days Streak</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="stat-value">0%</span>
+                                        <span class="stat-label">Productivity</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <form id="profileForm" class="form">
+                            <div class="input-row">
+                                <div class="input-group">
+                                    <label for="firstName">First Name</label>
+                                    <input type="text" id="firstName" name="firstName" placeholder="Enter your first name" required>
+                                </div>
+                                <div class="input-group">
+                                    <label for="lastName">Last Name</label>
+                                    <input type="text" id="lastName" name="lastName" placeholder="Enter your last name" required>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" placeholder="+1 (555) 123-4567">
+                            </div>
+                            <div class="input-group">
+                                <label for="timezone">Timezone</label>
+                                <select id="timezone" name="timezone">
+                                    <option value="UTC">UTC (Coordinated Universal Time)</option>
+                                    <option value="America/New_York">Eastern Time (ET)</option>
+                                    <option value="America/Chicago">Central Time (CT)</option>
+                                    <option value="America/Denver">Mountain Time (MT)</option>
+                                    <option value="America/Los_Angeles">Pacific Time (PT)</option>
+                                    <option value="America/Anchorage">Alaska Time (AKT)</option>
+                                    <option value="Pacific/Honolulu">Hawaii Time (HST)</option>
+                                    <option value="Europe/London">London (GMT/BST)</option>
+                                    <option value="Europe/Paris">Paris (CET/CEST)</option>
+                                    <option value="Europe/Berlin">Berlin (CET/CEST)</option>
+                                    <option value="Europe/Rome">Rome (CET/CEST)</option>
+                                    <option value="Europe/Madrid">Madrid (CET/CEST)</option>
+                                    <option value="Europe/Amsterdam">Amsterdam (CET/CEST)</option>
+                                    <option value="Europe/Stockholm">Stockholm (CET/CEST)</option>
+                                    <option value="Europe/Moscow">Moscow (MSK)</option>
+                                    <option value="Europe/Istanbul">Istanbul (TRT)</option>
+                                    <option value="Europe/Athens">Athens (EET)</option>
+                                    <option value="Europe/Helsinki">Helsinki (EET)</option>
+                                    <option value="Europe/Warsaw">Warsaw (CET)</option>
+                                    <option value="Europe/Prague">Prague (CET)</option>
+                                    <option value="Europe/Vienna">Vienna (CET)</option>
+                                    <option value="Europe/Zurich">Zurich (CET)</option>
+                                    <option value="Africa/Cairo">Cairo (EET)</option>
+                                    <option value="Africa/Johannesburg">Johannesburg (SAST)</option>
+                                    <option value="Africa/Lagos">Lagos (WAT)</option>
+                                    <option value="Africa/Nairobi">Nairobi (EAT)</option>
+                                    <option value="Africa/Casablanca">Casablanca (WET)</option>
+                                    <option value="Asia/Dubai">Dubai (GST)</option>
+                                    <option value="Asia/Kolkata">India (IST)</option>
+                                    <option value="Asia/Shanghai">Shanghai (CST)</option>
+                                    <option value="Asia/Tokyo">Tokyo (JST)</option>
+                                    <option value="Asia/Seoul">Seoul (KST)</option>
+                                    <option value="Asia/Singapore">Singapore (SGT)</option>
+                                    <option value="Asia/Hong_Kong">Hong Kong (HKT)</option>
+                                    <option value="Asia/Bangkok">Bangkok (ICT)</option>
+                                    <option value="Asia/Jakarta">Jakarta (WIB)</option>
+                                    <option value="Asia/Manila">Manila (PHT)</option>
+                                    <option value="Asia/Kuala_Lumpur">Kuala Lumpur (MYT)</option>
+                                    <option value="Asia/Karachi">Karachi (PKT)</option>
+                                    <option value="Asia/Dhaka">Dhaka (BST)</option>
+                                    <option value="Asia/Tehran">Tehran (IRST)</option>
+                                    <option value="Asia/Baghdad">Baghdad (AST)</option>
+                                    <option value="Asia/Riyadh">Riyadh (AST)</option>
+                                    <option value="Asia/Jerusalem">Jerusalem (IST)</option>
+                                    <option value="Australia/Sydney">Sydney (AEDT/AEST)</option>
+                                    <option value="Australia/Melbourne">Melbourne (AEDT/AEST)</option>
+                                    <option value="Australia/Perth">Perth (AWST)</option>
+                                    <option value="Australia/Brisbane">Brisbane (AEST)</option>
+                                    <option value="Australia/Adelaide">Adelaide (ACDT/ACST)</option>
+                                    <option value="Pacific/Auckland">Auckland (NZDT/NZST)</option>
+                                    <option value="Pacific/Fiji">Fiji (FJT)</option>
+                                    <option value="America/Toronto">Toronto (ET)</option>
+                                    <option value="America/Vancouver">Vancouver (PT)</option>
+                                    <option value="America/Montreal">Montreal (ET)</option>
+                                    <option value="America/Mexico_City">Mexico City (CST)</option>
+                                    <option value="America/Guatemala">Guatemala (CST)</option>
+                                    <option value="America/Costa_Rica">Costa Rica (CST)</option>
+                                    <option value="America/Panama">Panama (EST)</option>
+                                    <option value="America/Bogota">Bogotá (COT)</option>
+                                    <option value="America/Lima">Lima (PET)</option>
+                                    <option value="America/Caracas">Caracas (VET)</option>
+                                    <option value="America/La_Paz">La Paz (BOT)</option>
+                                    <option value="America/Santiago">Santiago (CLT)</option>
+                                    <option value="America/Sao_Paulo">São Paulo (BRT)</option>
+                                    <option value="America/Buenos_Aires">Buenos Aires (ART)</option>
+                                    <option value="America/Montevideo">Montevideo (UYT)</option>
+                                    <option value="Atlantic/Reykjavik">Reykjavik (GMT)</option>
+                                    <option value="Atlantic/Azores">Azores (AZOT)</option>
+                                    <option value="Atlantic/Cape_Verde">Cape Verde (CVT)</option>
+                                </select>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i>
+                                    Save Profile
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="profile-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-shield-alt"></i> Security</h3>
+                        </div>
+                        <form id="securityForm" class="form">
+                            <div class="input-group">
+                                <label for="currentPassword">Current Password</label>
+                                <input type="password" id="currentPassword" name="currentPassword">
+                            </div>
+                            <div class="input-group">
+                                <label for="newPassword">New Password</label>
+                                <input type="password" id="newPassword" name="newPassword">
+                            </div>
+                            <div class="input-group">
+                                <label for="confirmNewPassword">Confirm New Password</label>
+                                <input type="password" id="confirmNewPassword" name="confirmNewPassword">
+                            </div>
+                            <button type="submit" class="btn btn-outline">
+                                <i class="fas fa-key"></i>
+                                Update Password
+                            </button>
+                        </form>
+                        <div class="security-options">
+                            <div class="option-item">
+                                <div class="option-info">
+                                    <h4>Two-Factor Authentication</h4>
+                                    <p>Add an extra layer of security to your account</p>
+                                </div>
+                                <label class="toggle">
+                                    <input type="checkbox" id="twoFactor">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="option-item">
+                                <div class="option-info">
+                                    <h4>Login Notifications</h4>
+                                    <p>Get notified when someone signs into your account</p>
+                                </div>
+                                <label class="toggle">
+                                    <input type="checkbox" id="loginNotifications" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Preferences Section -->
+            <section id="preferences" class="section">
+                <div class="preferences-grid">
+                    <div class="profile-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-clock"></i> Working Hours</h3>
+                        </div>
+                        <form id="workingHoursForm" class="form">
+                            <div class="input-row">
+                                <div class="input-group">
+                                    <label for="workStart">Start Time</label>
+                                    <input type="time" id="workStart" name="workStart" value="09:00">
+                                </div>
+                                <div class="input-group">
+                                    <label for="workEnd">End Time</label>
+                                    <input type="time" id="workEnd" name="workEnd" value="17:00">
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label for="workDays">Working Days</label>
+                                <div class="checkbox-group">
+                                    <label class="checkbox">
+                                        <input type="checkbox" name="workDays" value="monday" checked>
+                                        <span class="checkmark"></span>
+                                        Monday
+                                    </label>
+                                    <label class="checkbox">
+                                        <input type="checkbox" name="workDays" value="tuesday" checked>
+                                        <span class="checkmark"></span>
+                                        Tuesday
+                                    </label>
+                                    <label class="checkbox">
+                                        <input type="checkbox" name="workDays" value="wednesday" checked>
+                                        <span class="checkmark"></span>
+                                        Wednesday
+                                    </label>
+                                    <label class="checkbox">
+                                        <input type="checkbox" name="workDays" value="thursday" checked>
+                                        <span class="checkmark"></span>
+                                        Thursday
+                                    </label>
+                                    <label class="checkbox">
+                                        <input type="checkbox" name="workDays" value="friday" checked>
+                                        <span class="checkmark"></span>
+                                        Friday
+                                    </label>
+                                    <label class="checkbox">
+                                        <input type="checkbox" name="workDays" value="saturday">
+                                        <span class="checkmark"></span>
+                                        Saturday
+                                    </label>
+                                    <label class="checkbox">
+                                        <input type="checkbox" name="workDays" value="sunday">
+                                        <span class="checkmark"></span>
+                                        Sunday
+                                    </label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="profile-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-bolt"></i> Energy Preferences</h3>
+                        </div>
+                        <form id="energyForm" class="form">
+                            <div class="input-group">
+                                <label for="energyPeaks">Peak Energy Hours</label>
+                                <div class="checkbox-group">
+                                    <label class="checkbox">
+                                        <input type="checkbox" name="energyPeaks" value="morning" checked>
+                                        <span class="checkmark"></span>
+                                        Morning (6AM - 12PM)
+                                    </label>
+                                    <label class="checkbox">
+                                        <input type="checkbox" name="energyPeaks" value="afternoon">
+                                        <span class="checkmark"></span>
+                                        Afternoon (12PM - 6PM)
+                                    </label>
+                                    <label class="checkbox">
+                                        <input type="checkbox" name="energyPeaks" value="evening">
+                                        <span class="checkmark"></span>
+                                        Evening (6PM - 11PM)
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label for="breakDuration">Preferred Break Duration</label>
+                                <select id="breakDuration" name="breakDuration">
+                                    <option value="5">5 minutes</option>
+                                    <option value="10">10 minutes</option>
+                                    <option value="15" selected>15 minutes</option>
+                                    <option value="20">20 minutes</option>
+                                    <option value="30">30 minutes</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label for="focusBlocks">Focus Block Length</label>
+                                <select id="focusBlocks" name="focusBlocks">
+                                    <option value="25">25 minutes (Pomodoro)</option>
+                                    <option value="45">45 minutes</option>
+                                    <option value="60" selected>60 minutes</option>
+                                    <option value="90">90 minutes</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="profile-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-bell"></i> Notifications</h3>
+                        </div>
+                        <div class="notification-settings">
+                            <div class="option-item">
+                                <div class="option-info">
+                                    <h4>Task Reminders</h4>
+                                    <p>Get notified about upcoming deadlines</p>
+                                </div>
+                                <label class="toggle">
+                                    <input type="checkbox" id="taskReminders" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="option-item">
+                                <div class="option-info">
+                                    <h4>AI Suggestions</h4>
+                                    <p>Receive proactive AI recommendations</p>
+                                </div>
+                                <label class="toggle">
+                                    <input type="checkbox" id="aiSuggestions" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="option-item">
+                                <div class="option-info">
+                                    <h4>Break Reminders</h4>
+                                    <p>Get reminded to take breaks</p>
+                                </div>
+                                <label class="toggle">
+                                    <input type="checkbox" id="breakReminders" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="option-item">
+                                <div class="option-info">
+                                    <h4>Weekly Reports</h4>
+                                    <p>Receive productivity summaries</p>
+                                </div>
+                                <label class="toggle">
+                                    <input type="checkbox" id="weeklyReports" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Integrations Section -->
+            <section id="integrations" class="section">
+                <div class="integrations-grid">
+                    <div class="integration-card" id="googleCalendarCard">
+                        <div class="integration-icon google">
+                            <i class="fab fa-google"></i>
+                        </div>
+                        <div class="integration-info">
+                            <h3>Google Calendar</h3>
+                            <p>Sync your events and meetings automatically</p>
+                            <div class="integration-status" id="googleCalendarStatus">
+                                <i class="fas fa-circle"></i>
+                                Not Connected
+                            </div>
+                        </div>
+                        <div class="integration-actions" id="googleCalendarActions">
+                            <button class="btn btn-primary btn-sm" data-action="connect-google-calendar">Connect</button>
+                        </div>
+                    </div>
+
+                    <div class="integration-card" id="notionCard">
+                        <div class="integration-icon notion">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div class="integration-info">
+                            <h3>Notion</h3>
+                            <p>Sync tasks with your Notion workspace</p>
+                            <div class="integration-status" id="notionStatus">
+                                <i class="fas fa-circle"></i>
+                                Not Connected
+                            </div>
+                        </div>
+                        <div class="integration-actions" id="notionActions">
+                            <button class="btn btn-primary btn-sm" data-action="connect-notion">Connect</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Subscription Section -->
+            <section id="subscription" class="section">
+                <div class="subscription-info">
+                    <div class="current-plan">
+                        <div class="plan-header">
+                            <h3>Current Plan</h3>
+                            <div class="plan-badge free">Free</div>
+                        </div>
+                        <div class="plan-details">
+                            <div class="plan-price">
+                                <span class="currency">$</span>
+                                <span class="amount">0</span>
+                                <span class="period">/month</span>
+                            </div>
+                            <div class="plan-features">
+                                <div class="feature">
+                                    <i class="fas fa-check"></i>
+                                    <span>Unlimited tasks</span>
+                                </div>
+                                <div class="feature">
+                                    <i class="fas fa-check"></i>
+                                    <span>Advanced AI optimization</span>
+                                </div>
+                                <div class="feature">
+                                    <i class="fas fa-check"></i>
+                                    <span>Behavioral learning</span>
+                                </div>
+                                <div class="feature">
+                                    <i class="fas fa-check"></i>
+                                    <span>All features included</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="plan-actions">
+                            <button class="btn btn-primary" id="shareWithFriendsBtn">
+                                <i class="fas fa-share"></i>
+                                Enjoying Zyntrain? Share with friends!
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="billing-info">
+                        <h3>Account Information</h3>
+                        <div class="billing-details">
+                            <div class="billing-item">
+                                <span class="label">Account created:</span>
+                                <span class="value" id="accountCreated">Loading...</span>
+                            </div>
+                            <div class="billing-item">
+                                <span class="label">Plan:</span>
+                                <span class="value">Free Forever</span>
+                            </div>
+                            <div class="billing-item">
+                                <span class="label">Status:</span>
+                                <span class="value">Active</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline" id="exportDataBtn">
+                            <i class="fas fa-download"></i>
+                            Export Data
+                        </button>
+                    </div>
+
+                    <div class="usage-stats">
+                        <h3>Usage Statistics</h3>
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <div class="stat-icon">
+                                    <i class="fas fa-tasks"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <h4>0</h4>
+                                    <p>Tasks this month</p>
+                                </div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-icon">
+                                    <i class="fas fa-brain"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <h4>0</h4>
+                                    <p>AI suggestions</p>
+                                </div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <h4>0h</h4>
+                                    <p>Time optimized</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Theme Toggle Button -->
+    <div class="theme-toggle-container">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+
+    <script src="./scripts/main.js"></script>
+    <script src="./scripts/profile.js"></script>
+    <script>
+        // Initialize profile page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize theme toggle
+            initThemeToggle();
+            
+            setTimeout(() => {
+                const loadingScreen = document.getElementById('profileLoading');
+                if (loadingScreen) {
+                    loadingScreen.classList.add('hidden');
+                }
+            }, 1000);
+        });
+        
+        function initThemeToggle() {
+            const themeToggle = document.getElementById('themeToggle');
+            if (!themeToggle) return;
+            
+            // Update icon based on current theme
+            const updateThemeIcon = () => {
+                const currentTheme = ThemeManager.getCurrentTheme();
+                const icon = themeToggle.querySelector('i');
+                if (currentTheme === 'dark') {
+                    icon.className = 'fas fa-sun';
+                    themeToggle.title = 'Switch to Light Mode';
+                } else {
+                    icon.className = 'fas fa-moon';
+                    themeToggle.title = 'Switch to Dark Mode';
+                }
+            };
+            
+            updateThemeIcon();
+            
+            themeToggle.addEventListener('click', () => {
+                const newTheme = ThemeManager.toggleTheme();
+                updateThemeIcon();
+                Utils.showNotification(`Switched to ${newTheme} mode`, 'success');
+            });
+        }
+    </script>
+</body>
+</html>

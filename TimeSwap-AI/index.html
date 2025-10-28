@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zyntrain AI – Intelligent Task Management & Productivity Platform</title>
+    <meta name="description" content="Transform your productivity with AI-powered task management. Zyntrain AI learns your patterns and optimizes your schedule for maximum efficiency.">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Zyntrain AI – Intelligent Task Management & Productivity Platform">
+    <meta property="og:description" content="Transform your productivity with AI-powered task management. Zyntrain AI learns your patterns and optimizes your schedule for maximum efficiency.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://zykro.dev">
+    <meta property="og:image" content="https://zykro.dev/og-image.jpg">
+    
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Zyntrain AI – Intelligent Task Management & Productivity Platform">
+    <meta name="twitter:description" content="Transform your productivity with AI-powered task management. Zyntrain AI learns your patterns and optimizes your schedule for maximum efficiency.">
+    <meta name="twitter:image" content="https://zykro.dev/twitter-image.jpg">
+    
+    <!-- Preload Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="/Zyntrain/styles/styles.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h1 class="logo-text">Zyntrain AI</h1>
+            </div>
+            <div class="loading-bar-container">
+                <div class="loading-bar"></div>
+            </div>
+            <p class="loading-text">Initializing AI Engine...</p>
+        </div>
+    </div>
+
+    <!-- Particle Background -->
+    <div id="particles-bg"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-brain"></i>
+                <span>Zyntrain AI</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#features" class="nav-link">Features</a></li>
+                <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
+                <li><a href="#pricing" class="nav-link">Pricing</a></li>
+                <li><a href="./auth.html" class="nav-btn">Get Started</a></li>
+            </ul>
+            <div class="nav-controls">
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Floating Theme Toggle -->
+    <button class="theme-toggle" id="theme-toggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">
+                        Stop Fighting Your Schedule.<br>
+                        <span class="gradient-text">Let AI Optimize It.</span>
+                    </h1>
+                    <p class="hero-description">
+                        Zyntrain AI transforms chaos into clarity. Our intelligent system learns your patterns, 
+                        predicts your needs, and automatically optimizes your schedule for peak productivity.
+                    </p>
+                    <div class="hero-cta">
+                        <a href="./auth.html">
+                            <button class="cta-primary">
+                                <i class="fas fa-rocket"></i>
+                                Start Optimizing Now
+                            </button>
+                        </a>
+                        <a href="./presentation.html">
+                            <button class="cta-secondary">
+                                <i class="fas fa-play"></i>
+                                Watch Demo
+                            </button>
+                        </a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <span class="stat-number">70</span>
+                            <span class="stat-label">Percent Active Users</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">4.9</span>
+                            <span class="stat-label">User Rating</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">2.5x</span>
+                            <span class="stat-label">Productivity Boost</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="dashboard-preview">
+                        <div class="dashboard-header">
+                            <div class="window-controls">
+                                <span class="control red"></span>
+                                <span class="control yellow"></span>
+                                <span class="control green"></span>
+                            </div>
+                            <span class="dashboard-title">Zyntrain AI Dashboard</span>
+                        </div>
+                        <div class="dashboard-content">
+                            <div class="ai-insights">
+                                <h4><i class="fas fa-brain"></i> AI Insights</h4>
+                                <p>Your peak productivity hours: 9-11 AM</p>
+                            </div>
+                            <div class="task-timeline">
+                                <div class="timeline-item active">
+                                    <div class="timeline-dot"></div>
+                                    <span>Review quarterly reports</span>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-dot"></div>
+                                    <span>Team standup meeting</span>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-dot"></div>
+                                    <span>Focus time: Deep work</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Intelligent Features That Work for You</h2>
+                <p class="section-description">
+                    Our AI doesn't just organize your tasks—it understands your work patterns and optimizes for your success.
+                </p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-sort-amount-up"></i>
+                    </div>
+                    <h3 class="feature-title">AI Task Prioritization</h3>
+                    <p class="feature-description">
+                        Smart algorithms analyze urgency, importance, and your energy levels to prioritize tasks automatically.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h3 class="feature-title">Smart Calendar Integration</h3>
+                    <p class="feature-description">
+                        Seamlessly sync with Google Calendar, Outlook, and Apple Calendar for unified schedule management.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="feature-title">Behavioral Learning</h3>
+                    <p class="feature-description">
+                        The AI learns from your patterns and preferences to make increasingly accurate scheduling predictions.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-battery-three-quarters"></i>
+                    </div>
+                    <h3 class="feature-title">Energy-Based Scheduling</h3>
+                    <p class="feature-description">
+                        Schedule demanding tasks during your peak energy hours and lighter work during low-energy periods.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Dynamic Task Swapping</h3>
+                    <p class="feature-description">
+                        Real-time schedule adjustments based on changing priorities, deadlines, and availability.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="feature-title">AI Assistant Chat</h3>
+                    <p class="feature-description">
+                        Natural language interface to manage tasks, get insights, and receive productivity recommendations.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">How Zyntrain AI Works</h2>
+                <p class="section-description">
+                    Three simple steps to transform your productivity with AI-powered task management.
+                </p>
+            </div>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Input Your Tasks</h3>
+                        <p class="step-description">
+                            Add your tasks, deadlines, and preferences. Our AI analyzes the complexity and time requirements for each item.
+                        </p>
+                        <div class="step-visual">
+                            <i class="fas fa-plus-circle"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="step-connector"></div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3 class="step-title">AI Analyzes & Optimizes</h3>
+                        <p class="step-description">
+                            Our intelligent system evaluates your patterns, energy levels, and priorities to create the perfect schedule.
+                        </p>
+                        <div class="step-visual">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="step-connector"></div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Adapt & Execute</h3>
+                        <p class="step-description">
+                            Follow your optimized schedule and watch as the AI continuously adapts to keep you at peak productivity.
+                        </p>
+                        <div class="step-visual">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Simple, Transparent Pricing</h2>
+                <p class="section-description">
+                    Start optimizing your productivity today with our comprehensive free plan.
+                </p>
+            </div>
+            <div class="pricing-container">
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">Most Popular</div>
+                    <div class="pricing-header">
+                        <h3 class="plan-name">Free Forever</h3>
+                        <div class="plan-price">
+                            <span class="currency">$</span>
+                            <span class="amount">0</span>
+                            <span class="period">/month</span>
+                        </div>
+                        <p class="plan-description">Everything you need to optimize your productivity</p>
+                    </div>
+                    <div class="pricing-features">
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Unlimited Tasks</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>AI-Powered Optimization</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Google Calendar Sync</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>AI Assistant Chat</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Productivity Insights</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Mobile & Web Access</span>
+                        </div>
+                    </div>
+                    <a href="./auth.html">
+                        <button class="pricing-cta">
+                            <i class="fas fa-rocket"></i>
+                            Get Started Now
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <i class="fas fa-brain"></i>
+                        <span>Zyntrain AI</span>
+                    </div>
+                    <p class="footer-description">
+                        Empowering productivity through intelligent task management and AI-driven schedule optimization.
+                    </p>
+                </div>
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h4 class="link-title">Product</h4>
+                        <ul>
+                            <li><a href="#features">Features</a></li>
+                            <li><a href="#how-it-works">How It Works</a></li>
+                            <li><a href="#pricing">Pricing</a></li>
+                        </ul>
+                    </div>
+                    <div class="link-group">
+                        <h4 class="link-title">Company</h4>
+                        <ul>
+                            <li><a href="./about.html">About Us</a></li>
+                            <li><a href="./blog.html">Blog</a></li>
+                            <li><a href="./Legal/Support.html">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="link-group">
+                        <h4 class="link-title">Support</h4>
+                        <ul>
+                            <li><a href="./Legal/Support.html">Help Center</a></li>
+                            <li><a href="./Legal/Privacy Policy.html">Privacy Policy</a></li>
+                            <li><a href="./Legal/Terms Of Service.html">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/yin.shif/" class="social-link">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://discordapp.com/users/1145301764615176282" class="social-link">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                    <a href="https://github.com/Inv-Wolve" class="social-link">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+                <p class="footer-copyright">
+                    © 2025 Zyntrain. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./scripts/home.js"></script>
+</body>
+</html>

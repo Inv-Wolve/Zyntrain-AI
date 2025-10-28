@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#2563eb">
+    <title>Two-Factor Authentication - Zyntrain</title>
+    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="stylesheet" href="./styles/auth.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-background">
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="gradient-orb orb-3"></div>
+        </div>
+        
+        <div class="auth-main">
+            <div class="auth-header">
+                <a href="auth.html" class="back-link">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Login
+                </a>
+                <div class="brand">
+                    <i class="fas fa-robot"></i>
+                    <span>Zyntrain</span>
+                </div>
+            </div>
+
+            <div class="auth-forms">
+                <div class="auth-form" id="twoFactorForm">
+                    <div class="form-header">
+                        <h1>Two-Factor Authentication</h1>
+                        <p>Enter the 6-digit code sent to your email</p>
+                    </div>
+
+                    <form id="verify2FAForm" class="form">
+                        <div class="input-group">
+                            <label for="twoFactorCode">Authentication Code</label>
+                            <input type="text" id="twoFactorCode" name="code" required maxlength="6" pattern="[0-9]{6}" placeholder="123456">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <i class="fas fa-shield-alt"></i>
+                            Verify Code
+                        </button>
+                    </form>
+
+                    <div class="form-footer">
+                        <p>Didn't receive a code? <a href="#" id="resendCode">Resend code</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./scripts/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const userId = urlParams.get('userId');
+            
+            if (!userId) {
+                Utils.showNotification('Invalid 2FA session. Please login again.', 'error');
+                setTimeout(() => {
+                    window.location.href = 'auth.html';
+                }, 3000);
+                return;
+            }
+            
+            const form = document.getElementById('verify2FAForm');
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const code = document.getElementById('twoFactorCode').value;
+                
+                if (!/^\d{6}$/.test(code)) {
+                    Utils.showNotification('Please enter a valid 6-digit code', 'error');
+                    return;
+                }
+                
+                const submitBtn = form.querySelector('button[type="submit"]');
+                submitBtn.classList.add('btn-loading');
+                submitBtn.disabled = true;
+                
+                try {
+                    const response = await fetch(`${API_BASE_URL}/api/auth/verify-login-2fa`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ userId, code })
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (data.success) {
+                        localStorage.setItem('authToken', data.token);
+                        Utils.showNotification('Login successful! Welcome back.', 'success');
+                        setTimeout(() => {
+                            window.location.href = 'dashboard.html';
+                        }, 1000);
+                    } else {
+                        Utils.showNotification(data.error || data.message || 'Invalid code. Please try again.', 'error');
+                    }
+                } catch (error) {
+                    console.error('2FA verification error:', error);
+                    Utils.showNotification('Verification failed. Please try again.', 'error');
+                } finally {
+                    submitBtn.classList.remove('btn-loading');
+                    submitBtn.disabled = false;
+                }
+            });
+            
+            // Resend code functionality
+            document.getElementById('resendCode').addEventListener('click', async (e) => {
+                e.preventDefault();
+                Utils.showNotification('Please login again to receive a new code.', 'info');
+                setTimeout(() => {
+                    window.location.href = 'auth.html';
+                }, 2000);
+            });
+            
+            // Auto-focus on code input
+            document.getElementById('twoFactorCode').focus();
+            
+            // Auto-submit when 6 digits are entered
+            document.getElementById('twoFactorCode').addEventListener('input', (e) => {
+                const value = e.target.value;
+                if (value.length === 6 && /^\d{6}$/.test(value)) {
+                    setTimeout(() => {
+                        form.dispatchEvent(new Event('submit'));
+                    }, 500);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

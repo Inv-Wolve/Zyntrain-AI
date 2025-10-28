@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#2563eb">
+    <title>Sign In - Zyntrain</title>
+    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="stylesheet" href="./styles/auth.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Cinematic Loading Screen -->
+    <div class="loading-screen" id="authLoading">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">Preparing Authentication...</div>
+        </div>
+    </div>
+
+    <!-- Cosmic Particles System -->
+    <div class="cosmic-particles" id="authParticles" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; overflow: hidden;"></div>
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor" id="authCursor"></div>
+
+    <div class="auth-container">
+        <div class="auth-background">
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="gradient-orb orb-3"></div>
+        </div>
+        
+        <div class="auth-main">
+            <div class="auth-header">
+                <a href="index.html" class="back-link">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Home
+                </a>
+                <div class="brand">
+                    <i class="fas fa-robot"></i>
+                    <span>Zyntrain</span>
+                </div>
+            </div>
+
+            <div class="auth-forms">
+                <!-- Sign In Form -->
+                <div class="auth-form" id="signInForm">
+                    <div class="form-header">
+                        <h1>Welcome Back</h1>
+                        <p>Sign in to your Zyntrain account</p>
+                    </div>
+
+                    <form id="loginForm" class="form">
+                        <div class="input-group">
+                            <label for="loginEmail">Email Address</label>
+                            <input type="email" id="loginEmail" name="email" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="loginPassword">Password</label>
+                            <input type="password" id="loginPassword" name="password" required>
+                        </div>
+                        <div class="form-options">
+                            <label class="checkbox">
+                                <input type="checkbox" name="remember">
+                                <span class="checkmark"></span>
+                                Remember me
+                            </label>
+                            <a href="#" class="forgot-link" data-action="forgot-password">Forgot password?</a>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <i class="fas fa-rocket"></i>
+                            Sign In
+                        </button>
+                    </form>
+
+                    <div class="form-footer">
+                        <p>Don't have an account? <a href="#" data-action="show-signup">Sign up for free</a></p>
+                    </div>
+                </div>
+
+                <!-- Sign Up Form -->
+                <div class="auth-form hidden" id="signUpForm">
+                    <div class="form-header">
+                        <h1>Get Started</h1>
+                        <p>Create your Zyntrain account</p>
+                    </div>
+
+                    <form id="registerForm" class="form">
+                        <div class="input-row">
+                            <div class="input-group">
+                                <label for="firstName">First Name</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label for="registerEmail">Email Address</label>
+                            <input type="email" id="registerEmail" name="email" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="registerPassword">Password</label>
+                            <input type="password" id="registerPassword" name="password" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="confirmPassword">Confirm Password</label>
+                            <input type="password" id="confirmPassword" name="confirmPassword" required>
+                        </div>
+                        <div class="form-options">
+                            <label class="checkbox">
+                                <input type="checkbox" name="terms" required>
+                                <span class="checkmark"></span>
+                                I agree to the <a href="Legal/Terms Of Service.html">Terms of Service</a> and <a href="Legal/Privacy Policy.html">Privacy Policy</a>
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <i class="fas fa-sparkles"></i>
+                            Create Account
+                        </button>
+                    </form>
+
+                    <div class="form-footer">
+                        <p>Already have an account? <a href="#" data-action="show-signin">Sign in here</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="auth-benefits">
+            <h3>Why Choose Zyntrain?</h3>
+            <div class="benefits-list">
+                <div class="benefit">
+                    <i class="fas fa-robot"></i>
+                    <div>
+                        <h4>AI-Powered Optimization</h4>
+                        <p>Smart algorithms that learn your patterns and optimize your schedule automatically.</p>
+                    </div>
+                </div>
+                <div class="benefit">
+                    <i class="fas fa-chart-line"></i>
+                    <div>
+                        <h4>Increase Productivity by 87%</h4>
+                        <p>Join thousands of professionals who've transformed their time management.</p>
+                    </div>
+                </div>
+                <div class="benefit">
+                    <i class="fas fa-shield-alt"></i>
+                    <div>
+                        <h4>Enterprise Security</h4>
+                        <p>Bank-level encryption and security to keep your data safe and private.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Theme Toggle Button -->
+    <div class="theme-toggle-container">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+
+    <script src="./scripts/main.js"></script>
+    <script src="./scripts/auth.js"></script>
+    <script>
+        // Initialize auth page cinematic effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize theme toggle
+            initThemeToggle();
+            
+            initAuthCinematicEffects();
+            
+            setTimeout(() => {
+                const loadingScreen = document.getElementById('authLoading');
+                if (loadingScreen) {
+                    loadingScreen.classList.add('hidden');
+                }
+            }, 1200);
+        });
+        
+        function initThemeToggle() {
+            const themeToggle = document.getElementById('themeToggle');
+            if (!themeToggle) return;
+            
+            // Update icon based on current theme
+            const updateThemeIcon = () => {
+                const currentTheme = ThemeManager.getCurrentTheme();
+                const icon = themeToggle.querySelector('i');
+                if (currentTheme === 'dark') {
+                    icon.className = 'fas fa-sun';
+                    themeToggle.title = 'Switch to Light Mode';
+                } else {
+                    icon.className = 'fas fa-moon';
+                    themeToggle.title = 'Switch to Dark Mode';
+                }
+            };
+            
+            updateThemeIcon();
+            
+            themeToggle.addEventListener('click', () => {
+                const newTheme = ThemeManager.toggleTheme();
+                updateThemeIcon();
+                Utils.showNotification(`Switched to ${newTheme} mode`, 'success');
+            });
+        }
+
+        function initAuthCinematicEffects() {
+            // Create auth-specific particles
+            createAuthParticles();
+            
+            // Initialize custom cursor for auth
+            initAuthCursor();
+            
+            // Add form field animations
+            initFormAnimations();
+        }
+
+        function createAuthParticles() {
+            const particlesContainer = document.getElementById('authParticles');
+            if (!particlesContainer) return;
+            
+            const particleCount = window.innerWidth > 768 ? 40 : 20;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                const size = Math.random() * 3 + 1;
+                const left = Math.random() * 100;
+                const animationDuration = Math.random() * 15 + 20;
+                const delay = Math.random() * 25;
+                
+                particle.style.cssText = `
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${left}%;
+                    animation-duration: ${animationDuration}s;
+                    animation-delay: ${delay}s;
+                `;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        function initAuthCursor() {
+            if (window.innerWidth <= 1023) return;
+            
+            const cursor = document.getElementById('authCursor');
+            if (!cursor) return;
+            
+            let mouseX = 0;
+            let mouseY = 0;
+            let cursorX = 0;
+            let cursorY = 0;
+            
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            });
+            
+            function animateCursor() {
+                cursorX += (mouseX - cursorX) * 0.1;
+                cursorY += (mouseY - cursorY) * 0.1;
+                
+                cursor.style.left = cursorX + 'px';
+                cursor.style.top = cursorY + 'px';
+                
+                requestAnimationFrame(animateCursor);
+            }
+            
+            animateCursor();
+            
+            // Add hover effects
+            document.querySelectorAll('a, button, .btn, input').forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursor.classList.add('hover');
+                });
+                
+                el.addEventListener('mouseleave', () => {
+                    cursor.classList.remove('hover');
+                });
+            });
+        }
+
+        function initFormAnimations() {
+            // Add focus animations to form inputs
+            document.querySelectorAll('input, textarea').forEach(input => {
+                input.addEventListener('focus', () => {
+                    input.style.transform = 'translateY(-2px) scale(1.02)';
+                    input.style.boxShadow = '0 0 30px rgba(0, 255, 255, 0.4)';
+                });
+                
+                input.addEventListener('blur', () => {
+                    input.style.transform = '';
+                    input.style.boxShadow = '';
+                });
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#2563eb">
+    <title>Access Restricted or Non Existant - Zyntrain AI</title>
+    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="stylesheet" href="./styles/home.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .error-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--gray-50) 0%, var(--primary-50) 50%, var(--purple-50) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .error-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        .error-content {
+            text-align: center;
+            max-width: 600px;
+            padding: var(--space-8);
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-xl);
+            border: 1px solid var(--gray-200);
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 2;
+        }
+
+        .error-icon {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, var(--error-100), var(--warning-100));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--space-6);
+            font-size: var(--font-size-4xl);
+            color: var(--error-600);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .error-title {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            color: var(--gray-900);
+            margin: 0 0 var(--space-4) 0;
+        }
+
+        .error-message {
+            font-size: var(--font-size-lg);
+            color: var(--gray-600);
+            margin: 0 0 var(--space-6) 0;
+            line-height: 1.6;
+        }
+
+        .error-details {
+            background: var(--gray-50);
+            border-radius: var(--radius-lg);
+            padding: var(--space-4);
+            margin: var(--space-6) 0;
+            border-left: 4px solid var(--warning-500);
+        }
+
+        .error-details h4 {
+            font-size: var(--font-size-base);
+            font-weight: 600;
+            color: var(--gray-900);
+            margin: 0 0 var(--space-2) 0;
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .error-details p {
+            font-size: var(--font-size-sm);
+            color: var(--gray-600);
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .error-actions {
+            display: flex;
+            gap: var(--space-4);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .error-actions .btn {
+            min-width: 140px;
+        }
+
+        .contact-info {
+            margin-top: var(--space-8);
+            padding-top: var(--space-6);
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .contact-info h4 {
+            font-size: var(--font-size-base);
+            font-weight: 600;
+            color: var(--gray-900);
+            margin: 0 0 var(--space-3) 0;
+        }
+
+        .contact-methods {
+            display: flex;
+            gap: var(--space-4);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-size: var(--font-size-sm);
+            color: var(--gray-600);
+        }
+
+        .contact-method i {
+            color: var(--primary-600);
+        }
+
+        .contact-method a {
+            color: var(--primary-600);
+            text-decoration: none;
+        }
+
+        .contact-method a:hover {
+            text-decoration: underline;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @media (max-width: 768px) {
+            .error-content {
+                margin: var(--space-4);
+                padding: var(--space-6);
+            }
+
+            .error-icon {
+                width: 80px;
+                height: 80px;
+                font-size: var(--font-size-3xl);
+            }
+
+            .error-title {
+                font-size: var(--font-size-2xl);
+            }
+
+            .error-message {
+                font-size: var(--font-size-base);
+            }
+
+            .error-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .error-actions .btn {
+                width: 100%;
+                max-width: 280px;
+            }
+
+            .contact-methods {
+                flex-direction: column;
+                gap: var(--space-2);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="error-page">
+        <div class="error-background">
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="gradient-orb orb-3"></div>
+        </div>
+        
+        <div class="error-content">
+            <div class="error-icon">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            
+            <h1 class="error-title">Access Restricted</h1>
+            
+            <p class="error-message">
+                Sorry! The file or resource you're trying to access is not available for security reasons. 
+                We protect our system files to ensure a safe and secure experience for all users.
+            </p>
+
+            <div class="error-details">
+                <h4>
+                    <i class="fas fa-info-circle"></i>
+                    What happened?
+                </h4>
+                <p>
+                    You attempted to access a system file (like .js, .css, .json, or configuration files) that is restricted for security purposes. 
+                    These files are protected to maintain the integrity and security of our platform.
+                </p>
+            </div>
+
+            <div class="error-actions">
+                <a href="/" class="btn btn-primary">
+                    <i class="fas fa-home"></i>
+                    Go to Homepage
+                </a>
+                <a href="index.html" class="btn btn-secondary">
+                    <i class="fas fa-brain"></i>
+                    Zyntrain AI
+                </a>
+                <a href="./Legal/Support.html" class="btn btn-outline">
+                    <i class="fas fa-headphones"></i>
+                    Contact Support
+                </a>
+            </div>
+
+            <div class="contact-info">
+                <h4>Need Help?</h4>
+                <div class="contact-methods">
+                    <div class="contact-method">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:layyin2424@gmail.com">layyin2424@gmail.com</a>
+                    </div>
+                    <div class="contact-method">
+                        <i class="fas fa-clock"></i>
+                        <span>Response within 24 hours</span>
+                    </div>
+                    <div class="contact-method">
+                        <i class="fas fa-user"></i>
+                        <span>Contact: Zykro</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add some interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate the error icon
+            const errorIcon = document.querySelector('.error-icon');
+            if (errorIcon) {
+                errorIcon.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.1) rotate(5deg)';
+                });
+                
+                errorIcon.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1) rotate(0deg)';
+                });
+            }
+
+            // Add hover effects to buttons
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px)';
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+
+            // Log the restricted access attempt (for analytics)
+            console.log('Restricted access attempt:', {
+                url: window.location.href,
+                timestamp: new Date().toISOString(),
+                userAgent: navigator.userAgent
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#2563eb">
+    <title>Zyntrain AI Demo - Watch How It Works</title>
+    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="stylesheet" href="./styles/home.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .presentation-container {
+            min-height: 100vh;
+            background: 
+                radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(147, 197, 253, 0.06) 0%, transparent 50%),
+                linear-gradient(135deg, var(--white) 0%, var(--gray-50) 100%);
+            padding: 120px 0 var(--space-8);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .presentation-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: var(--z-background);
+        }
+
+        .gradient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.6;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .orb-1 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(147, 197, 253, 0.2));
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, rgba(147, 197, 253, 0.4), rgba(59, 130, 246, 0.2));
+            top: 60%;
+            right: 20%;
+            animation-delay: 2s;
+        }
+
+        .orb-3 {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(147, 197, 253, 0.3));
+            bottom: 20%;
+            left: 60%;
+            animation-delay: 4s;
+        }
+
+        .demo-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--space-8);
+            position: relative;
+            z-index: var(--z-base);
+        }
+
+        .demo-header {
+            text-align: center;
+            margin-bottom: var(--space-12);
+        }
+
+        .demo-header h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            color: var(--gray-900);
+            margin-bottom: var(--space-4);
+            font-family: var(--font-display);
+            background: linear-gradient(135deg, var(--gray-900) 0%, var(--blue-700) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+        }
+
+        .demo-header p {
+            font-size: var(--text-xl);
+            color: var(--gray-600);
+            margin: 0 auto;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        .video-section {
+            background: var(--white);
+            border-radius: var(--radius-3xl);
+            box-shadow: var(--shadow-xl);
+            border: 1px solid var(--gray-200);
+            overflow: hidden;
+            margin-bottom: var(--space-16);
+            position: relative;
+        }
+
+        .video-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--blue-500), var(--blue-600));
+        }
+
+        .video-header {
+            padding: var(--space-6);
+            background: var(--gray-50);
+            border-bottom: 1px solid var(--gray-200);
+            text-align: center;
+        }
+
+        .video-header h2 {
+            margin: 0 0 var(--space-2) 0;
+            font-size: var(--text-2xl);
+            color: var(--gray-900);
+            font-family: var(--font-display);
+        }
+
+        .video-header p {
+            margin: 0;
+            color: var(--gray-600);
+            font-size: var(--text-base);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            background: var(--gray-900);
+            overflow: hidden;
+        }
+
+        .video-player {
+            width: 100%;
+            height: auto;
+            display: block;
+            background: var(--gray-900);
+        }
+
+        .video-controls {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            padding: var(--space-4);
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            opacity: 0;
+            transition: opacity var(--transition-normal);
+        }
+
+        .video-container:hover .video-controls {
+            opacity: 1;
+        }
+
+        .play-pause-btn {
+            background: var(--white);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            color: var(--gray-900);
+            font-size: var(--text-base);
+        }
+
+        .play-pause-btn:hover {
+            transform: scale(1.1);
+            background: var(--blue-500);
+            color: white;
+        }
+
+        .video-progress {
+            flex: 1;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 2px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--blue-500);
+            border-radius: 2px;
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+
+        .video-time {
+            color: white;
+            font-size: var(--text-sm);
+            font-weight: 500;
+            min-width: 80px;
+            text-align: right;
+        }
+
+        .video-placeholder {
+            aspect-ratio: 16/9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-4);
+            color: var(--gray-600);
+            background: linear-gradient(135deg, var(--gray-100), var(--gray-200));
+            padding: var(--space-8);
+            text-align: center;
+        }
+
+        .video-placeholder.hidden {
+            display: none;
+        }
+
+        .demo-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-8);
+            margin-bottom: var(--space-16);
+        }
+
+        .demo-feature {
+            background: var(--white);
+            padding: var(--space-8);
+            border-radius: var(--radius-2xl);
+            border: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+            transition: all var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .demo-feature::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--blue-500), var(--blue-600));
+            transform: scaleX(0);
+            transition: transform var(--transition-normal);
+        }
+
+        .demo-feature:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--blue-200);
+        }
+
+        .demo-feature:hover::before {
+            transform: scaleX(1);
+        }
+
+        .demo-feature i {
+            font-size: var(--text-3xl);
+            color: var(--blue-500);
+            margin-bottom: var(--space-4);
+            background: var(--blue-100);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: var(--space-6);
+            transition: all var(--transition-normal);
+        }
+
+        .demo-feature:hover i {
+            transform: scale(1.1);
+            background: var(--blue-200);
+        }
+
+        .demo-feature h4 {
+            margin: 0 0 var(--space-3) 0;
+            font-size: var(--text-xl);
+            color: var(--gray-900);
+            font-family: var(--font-display);
+        }
+
+        .demo-feature p {
+            margin: 0;
+            font-size: var(--text-base);
+            color: var(--gray-600);
+            line-height: 1.6;
+        }
+
+        .demo-actions {
+            display: flex;
+            gap: var(--space-6);
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: var(--space-12);
+        }
+
+        .demo-actions .btn {
+            min-width: 200px;
+            padding: var(--space-4) var(--space-8);
+            font-size: var(--text-lg);
+            border-radius: var(--radius-xl);
+        }
+
+        .video-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-6);
+            margin-top: var(--space-12);
+            padding: var(--space-8);
+            background: var(--white);
+            border-radius: var(--radius-2xl);
+            border: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .video-stat {
+            text-align: center;
+            padding: var(--space-4);
+            border-radius: var(--radius-lg);
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            transition: all var(--transition-normal);
+        }
+
+        .video-stat:hover {
+            background: var(--blue-50);
+            border-color: var(--blue-200);
+            transform: translateY(-2px);
+        }
+
+        .stat-number {
+            font-size: var(--text-3xl);
+            font-weight: 900;
+            color: var(--blue-600);
+            display: block;
+            margin-bottom: var(--space-2);
+            font-family: var(--font-display);
+        }
+
+        .stat-label {
+            font-size: var(--text-sm);
+            color: var(--gray-600);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .demo-features {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: var(--space-6);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .presentation-container {
+                padding: 100px var(--space-4) var(--space-6);
+            }
+
+            .demo-content {
+                padding: var(--space-4);
+            }
+
+            .demo-header h1 {
+                font-size: var(--text-3xl);
+            }
+
+            .demo-features {
+                grid-template-columns: 1fr;
+                gap: var(--space-6);
+            }
+
+            .demo-feature {
+                padding: var(--space-6);
+            }
+
+            .demo-feature i {
+                width: 60px;
+                height: 60px;
+                font-size: var(--text-2xl);
+            }
+
+            .demo-actions {
+                flex-direction: column;
+                align-items: center;
+                gap: var(--space-4);
+            }
+
+            .demo-actions .btn {
+                width: 100%;
+                max-width: 300px;
+                min-width: auto;
+            }
+
+            .video-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: var(--space-4);
+                padding: var(--space-6);
+            }
+
+            .video-controls {
+                padding: var(--space-3);
+                gap: var(--space-2);
+            }
+
+            .play-pause-btn {
+                width: 36px;
+                height: 36px;
+                font-size: var(--text-sm);
+            }
+
+            .video-time {
+                font-size: var(--text-xs);
+                min-width: 60px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .demo-header h1 {
+                font-size: var(--text-2xl);
+            }
+
+            .demo-header p {
+                font-size: var(--text-base);
+            }
+
+            .demo-feature {
+                padding: var(--space-4);
+            }
+
+            .demo-feature i {
+                width: 50px;
+                height: 50px;
+                font-size: var(--text-xl);
+            }
+
+            .demo-feature h4 {
+                font-size: var(--text-lg);
+            }
+
+            .demo-feature p {
+                font-size: var(--text-sm);
+            }
+
+            .video-stats {
+                grid-template-columns: 1fr;
+                gap: var(--space-3);
+                padding: var(--space-4);
+            }
+
+            .stat-number {
+                font-size: var(--text-2xl);
+            }
+
+            .video-section {
+                margin: var(--space-4) 0;
+            }
+
+            .video-header {
+                padding: var(--space-4);
+            }
+
+            .video-header h2 {
+                font-size: var(--text-xl);
+            }
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { 
+                transform: translateY(0px) rotate(0deg); 
+            }
+            33% { 
+                transform: translateY(-20px) rotate(120deg); 
+            }
+            66% { 
+                transform: translateY(10px) rotate(240deg); 
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { 
+                opacity: 1; 
+                transform: scale(1); 
+            }
+            50% { 
+                opacity: 0.7; 
+                transform: scale(1.05); 
+            }
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        /* Video Upload Styles */
+        /* Custom video player styling */
+        .video-player::-webkit-media-controls-panel {
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+        }
+
+        .video-player::-webkit-media-controls-play-button {
+            background: var(--blue-500);
+            border-radius: 50%;
+        }
+
+        /* Loading spinner for video */
+        .video-loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid var(--blue-500);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            display: none;
+            z-index: 10;
+        }
+
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-brain nav-icon"></i>
+                <span class="brand-text">Zyntrain</span>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="faq.html" class="nav-link">FAQ</a>
+                <a href="auth.html" class="nav-link nav-cta">Get Started</a>
+            </div>
+            <div class="nav-toggle" id="navToggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="presentation-container">
+        <div class="presentation-background">
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="gradient-orb orb-3"></div>
+        </div>
+        
+        <div class="demo-content">
+            <div class="demo-header">
+                <h1>Zyntrain AI in Action</h1>
+                <p>See how AI-powered task management transforms your productivity with intelligent scheduling and optimization</p>
+            </div>
+
+            <div class="video-section">
+                <div class="video-header">
+                    <h2>Product Demo</h2>
+                    <p>Watch Zyntrain AI optimize schedules and boost productivity in real-time</p>
+                </div>
+                
+                <div class="video-container">
+                    <video class="video-player" id="demoVideo" controls>
+                        <source src="/Zyntrain/Video.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    
+                    <div class="video-loading" id="videoLoading"></div>
+                </div>
+            </div>
+
+            <div class="demo-features">
+                <div class="demo-feature">
+                    <i class="fas fa-brain"></i>
+                    <h4>AI Task Optimization</h4>
+                    <p>Watch how our AI analyzes your patterns and automatically optimizes your schedule for maximum productivity and efficiency.</p>
+                </div>
+                <div class="demo-feature">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h4>Smart Calendar Integration</h4>
+                    <p>See seamless Google Calendar integration and intelligent task rescheduling based on real-world interruptions and conflicts.</p>
+                </div>
+                <div class="demo-feature">
+                    <i class="fas fa-chart-line"></i>
+                    <h4>Analytics Dashboard</h4>
+                    <p>Explore detailed productivity insights, behavioral learning, and personalized recommendations to improve your workflow.</p>
+                </div>
+                <div class="demo-feature">
+                    <i class="fas fa-bolt"></i>
+                    <h4>Energy-Based Scheduling</h4>
+                    <p>Discover how Zyntrain matches high-energy tasks with your peak performance hours for optimal results.</p>
+                </div>
+                <div class="demo-feature">
+                    <i class="fas fa-exchange-alt"></i>
+                    <h4>Dynamic Adaptation</h4>
+                    <p>See how the system instantly reorganizes your day when interruptions occur, keeping you productive no matter what.</p>
+                </div>
+                <div class="demo-feature">
+                    <i class="fas fa-comments"></i>
+                    <h4>AI Assistant Chat</h4>
+                    <p>Experience personalized productivity advice and schedule suggestions from our intelligent AI assistant.</p>
+                </div>
+            </div>
+
+            <div class="video-stats">
+                <div class="video-stat">
+                    <span class="stat-number">87%</span>
+                    <span class="stat-label">Productivity Increase</span>
+                </div>
+                <div class="video-stat">
+                    <span class="stat-number">70%</span>
+                    <span class="stat-label">Active Users</span>
+                </div>
+                <div class="video-stat">
+                    <span class="stat-number">90%</span>
+                    <span class="stat-label">Tasks Optimized</span>
+                </div>
+                <div class="video-stat">
+                    <span class="stat-number">4.9★</span>
+                    <span class="stat-label">User Rating</span>
+                </div>
+            </div>
+
+            <div class="demo-actions">
+                <a href="auth.html" class="btn btn-primary btn-large">
+                    <i class="fas fa-rocket"></i>
+                    Try Zyntrain AI Free
+                </a>
+                <a href="index.html" class="btn btn-secondary btn-large">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Home
+                </a>
+                <a href="faq.html" class="btn btn-outline btn-large">
+                    <i class="fas fa-question-circle"></i>
+                    Learn More
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Navigation functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            initNavigation();
+            initVideoUpload();
+            initAnimations();
+        });
+
+        function initNavigation() {
+            const navToggle = document.getElementById('navToggle');
+            const navMenu = document.getElementById('navMenu');
+            
+            if (navToggle && navMenu) {
+                navToggle.addEventListener('click', () => {
+                    navToggle.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                    
+                    // Prevent body scroll when menu is open
+                    if (navMenu.classList.contains('active')) {
+                        document.body.style.overflow = 'hidden';
+                    } else {
+                        document.body.style.overflow = '';
+                    }
+                });
+                
+                // Close menu when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (navMenu && navMenu.classList.contains('active') && 
+                        !navMenu.contains(e.target) && !navToggle.contains(e.target)) {
+                        navToggle.classList.remove('active');
+                        navMenu.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                });
+                
+                // Close menu on window resize
+                window.addEventListener('resize', () => {
+                    if (window.innerWidth > 768) {
+                        navToggle.classList.remove('active');
+                        navMenu.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                });
+            }
+        }
+
+        function initVideoUpload() {
+            const demoVideo = document.getElementById('demoVideo');
+            const videoLoading = document.getElementById('videoLoading');
+
+            // Initialize video controls
+            if (demoVideo) {
+                demoVideo.addEventListener('loadstart', function() {
+                    videoLoading.style.display = 'block';
+                });
+                
+                demoVideo.addEventListener('loadeddata', function() {
+                    videoLoading.style.display = 'none';
+                });
+                
+                demoVideo.addEventListener('error', function() {
+                    videoLoading.style.display = 'none';
+                    console.error('Error loading video');
+                });
+                
+                demoVideo.addEventListener('play', function() {
+                    console.log('Video started playing');
+                });
+                
+                demoVideo.addEventListener('pause', function() {
+                    console.log('Video paused');
+                });
+                
+                demoVideo.addEventListener('ended', function() {
+                    console.log('Video ended');
+                    showVideoEndedCTA();
+                });
+            }
+
+            function showVideoEndedCTA() {
+                const cta = document.createElement('div');
+                cta.className = 'video-cta';
+                cta.innerHTML = `
+                    <div class="cta-content">
+                        <h3>Ready to boost your productivity?</h3>
+                        <p>Start using Zyntrain AI today and experience the power of AI-driven task management.</p>
+                        <a href="auth.html" class="btn btn-primary">
+                            <i class="fas fa-rocket"></i>
+                            Get Started Free
+                        </a>
+                    </div>
+                `;
+                
+                cta.style.cssText = `
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: rgba(0, 0, 0, 0.8);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: white;
+                    text-align: center;
+                    z-index: 10;
+                `;
+                
+                const videoContainer = document.querySelector('.video-container');
+                videoContainer.appendChild(cta);
+                
+                // Remove CTA when clicking outside or after 10 seconds
+                setTimeout(() => {
+                    if (cta.parentNode) {
+                        cta.remove();
+                    }
+                }, 10000);
+                
+                cta.addEventListener('click', (e) => {
+                    if (e.target === cta) {
+                        cta.remove();
+                    }
+                });
+            }
+        }
+
+        function initAnimations() {
+            // Animate features on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in');
+                        
+                        // Stagger child animations
+                        const children = entry.target.querySelectorAll('.demo-feature, .video-stat');
+                        children.forEach((child, index) => {
+                            setTimeout(() => {
+                                child.classList.add('animate-in');
+                                child.style.animationDelay = `${index * 0.1}s`;
+                            }, index * 100);
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            // Observe sections for animations
+            document.querySelectorAll('.demo-features, .video-stats').forEach(section => {
+                observer.observe(section);
+            });
+
+            // Animate stats counters
+            const statNumbers = document.querySelectorAll('.stat-number');
+            statNumbers.forEach(stat => {
+                animateCounter(stat);
+            });
+        }
+
+        function animateCounter(element) {
+            const text = element.textContent;
+            const hasPercent = text.includes('%');
+            const hasStar = text.includes('★');
+            const hasPlus = text.includes('+');
+            const hasK = text.includes('k');
+            
+            let target = parseInt(text.replace(/[^\d]/g, ''));
+            if (hasK) target *= 1000;
+            
+            const duration = 2000;
+            const increment = target / (duration / 16);
+            let current = 0;
+            
+            const updateCounter = () => {
+                current += increment;
+                if (current < target) {
+                    let displayValue = Math.floor(current);
+                    if (hasK && displayValue >= 1000) {
+                        displayValue = Math.floor(displayValue / 1000) + 'k';
+                    }
+                    if (hasPlus) displayValue += '+';
+                    if (hasPercent) displayValue += '%';
+                    if (hasStar) displayValue += '★';
+                    
+                    element.textContent = displayValue;
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    element.textContent = text; // Reset to original
+                }
+            };
+            
+            // Start animation when element is visible
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        updateCounter();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            });
+            
+            observer.observe(element);
+        }
+
+        // Add hover effects to demo features
+        document.addEventListener('DOMContentLoaded', function() {
+            const demoFeatures = document.querySelectorAll('.demo-feature');
+            demoFeatures.forEach(feature => {
+                feature.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-12px) scale(1.02)';
+                });
+                
+                feature.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+
+            // Add click-to-play functionality for video placeholder
+            const demoVideo = document.getElementById('demoVideo');
+            if (demoVideo) {
+                // Auto-play video when it's ready (if allowed by browser)
+                demoVideo.addEventListener('canplay', function() {
+                    // Note: Auto-play may be blocked by browser policies
+                    // Users will need to click play manually in most cases
+                });
+            }
+        });
+    </script>
+</body>
+</html>
