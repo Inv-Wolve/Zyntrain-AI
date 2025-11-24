@@ -6,17 +6,20 @@
 // API Configuration
 const API_CONFIG = {
   BASE_URL: (() => {
-    const { hostname, protocol, port } = window.location;
+    const { hostname, protocol } = window.location;
     
-    if (hostname === 'zykro.dev') {
-      return 'https://zykro.dev';
+    // Production
+    if (hostname === 'timeswap.zykro.dev' || hostname === 'zykro.dev') {
+      return 'https://timeswap.zykro.dev'; // Ensure this points to the correct backend URL
     }
     
-    if (hostname === '123.231.97.212') {
-      return `${protocol}//${hostname}${port ? ':' + port : ''}`;
+    // Development
+    if (hostname === 'localhost' || hostname === '127.0.0.1') {
+      return 'http://localhost:4567';
     }
     
-    return 'https://zykro.dev';
+    // Fallback
+    return 'https://timeswap.zykro.dev';
   })(),
   
   ENDPOINTS: {

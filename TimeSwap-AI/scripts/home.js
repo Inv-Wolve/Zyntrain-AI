@@ -596,6 +596,45 @@ class CinematicEffects {
   }
 }
 
+/**
+ * Custom Cursor System
+ */
+class CustomCursor {
+  constructor() {
+    this.cursor = document.createElement('div');
+    this.cursorDot = document.createElement('div');
+    this.init();
+  }
+
+  init() {
+    this.cursor.className = 'custom-cursor';
+    this.cursorDot.className = 'custom-cursor-dot';
+    document.body.appendChild(this.cursor);
+    document.body.appendChild(this.cursorDot);
+
+    document.addEventListener('mousemove', (e) => this.moveCursor(e));
+    document.addEventListener('mousedown', () => this.cursor.classList.add('active'));
+    document.addEventListener('mouseup', () => this.cursor.classList.remove('active'));
+    
+    // Hover effects
+    const interactiveElements = document.querySelectorAll('a, button, .feature-card, .step');
+    interactiveElements.forEach(el => {
+      el.addEventListener('mouseenter', () => this.cursor.classList.add('hover'));
+      el.addEventListener('mouseleave', () => this.cursor.classList.remove('hover'));
+    });
+  }
+
+  moveCursor(e) {
+    const { clientX, clientY } = e;
+    this.cursorDot.style.transform = `translate(${clientX}px, ${clientY}px)`;
+    
+    // Smooth follow for outer circle
+    requestAnimationFrame(() => {
+      this.cursor.style.transform = `translate(${clientX}px, ${clientY}px)`;
+    });
+  }
+}
+
 // Initialize home page only if we're on the home page
 const initHomePage = () => {
   const isHomePage = window.location.pathname === '/' || 
@@ -605,6 +644,11 @@ const initHomePage = () => {
   if (isHomePage) {
     new HomePage();
     new CinematicEffects();
+    
+    // Only init custom cursor on desktop
+    if (window.matchMedia('(pointer: fine)').matches) {
+      new CustomCursor();
+    }
   }
 };
 
@@ -618,6 +662,50 @@ if (document.readyState === 'loading') {
 // Add dynamic CSS animations
 const homeStyles = document.createElement('style');
 homeStyles.textContent = `
+  .custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(37, 99, 235, 0.5);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s, background-color 0.3s;
+    z-index: 9999;
+    mix-blend-mode: difference;
+    margin-left: -20px;
+    margin-top: -20px;
+  }
+  
+  .custom-cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    background-color: #2563eb;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10000;
+    margin-left: -4px;
+    margin-top: -4px;
+  }
+  
+  .custom-cursor.hover {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(37, 99, 235, 0.1);
+    border-color: transparent;
+    margin-left: -30px;
+    margin-top: -30px;
+  }
+  
+  .custom-cursor.active {
+    transform: scale(0.8);
+  }
+
   @keyframes rippleEffect {
     0% {
       transform: scale(0);
@@ -692,4 +780,4 @@ homeStyles.textContent = `
 `;
 document.head.appendChild(homeStyles);
 
-export { HomePage, ParticleSystem, CinematicEffects };
+export { HomePage, ParticleSystem, CinematicEffects, CustomCursor };
