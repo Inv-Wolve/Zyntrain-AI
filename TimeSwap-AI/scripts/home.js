@@ -645,10 +645,10 @@ const initHomePage = () => {
     new HomePage();
     new CinematicEffects();
     
-    // Only init custom cursor on desktop
-    if (window.matchMedia('(pointer: fine)').matches) {
-      new CustomCursor();
-    }
+    // Custom cursor disabled per user request
+    // if (window.matchMedia('(pointer: fine)').matches) {
+    //   new CustomCursor();
+    // }
   }
 };
 

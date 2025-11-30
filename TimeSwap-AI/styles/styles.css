@@ -74,6 +74,11 @@ body {
     -ms-overflow-style: none; /* Internet Explorer 10+ */
 }
 
+/* Remove default link underlines globally */
+a {
+    text-decoration: none;
+}
+
 /* Hide scrollbar for WebKit browsers (Chrome, Safari, Edge) */
 body::-webkit-scrollbar {
     display: none;
@@ -661,8 +666,8 @@ html::-webkit-scrollbar {
     box-shadow: 0 4px 20px var(--shadow-color);
     border: 1px solid var(--border-color);
     transition: all var(--transition-medium);
-    opacity: 0;
-    transform: translateY(30px);
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .feature-card.animate {
@@ -718,8 +723,8 @@ html::-webkit-scrollbar {
     flex: 1;
     text-align: center;
     position: relative;
-    opacity: 0;
-    transform: translateY(30px);
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .step.animate {
@@ -809,8 +814,8 @@ html::-webkit-scrollbar {
     border: 1px solid var(--border-color);
     position: relative;
     width: 100%;
-    opacity: 0;
-    transform: translateY(30px);
+    opacity: 1;
+    transform: translateY(0);
     transition: all var(--transition-medium);
 }
 
