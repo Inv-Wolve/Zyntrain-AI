@@ -107,14 +107,29 @@ class HomePage {
   }
 
   initScrollAnimations() {
+    // Enhanced observer options for smoother, earlier animations
     const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
+      threshold: [0, 0.1, 0.2, 0.3], // Multiple thresholds for progressive animation
+      rootMargin: '0px 0px -100px 0px' // Trigger earlier (100px before element enters viewport)
     };
+
+    let lastScrollY = window.scrollY;
+    let scrollSpeed = 0;
+
+    // Track scroll speed for dynamic animations
+    const updateScrollSpeed = Utils.throttle(() => {
+      const currentScrollY = window.scrollY;
+      scrollSpeed = Math.abs(currentScrollY - lastScrollY);
+      lastScrollY = currentScrollY;
+    }, 100);
+
+    window.addEventListener('scroll', updateScrollSpeed);
+    this.eventListeners.push({ element: window, event: 'scroll', handler: updateScrollSpeed });
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.1) {
+          // Add animate class when element is visible
           entry.target.classList.add('animate');
           
           // Add staggered animations for child elements
@@ -122,9 +137,11 @@ class HomePage {
           children.forEach((child, index) => {
             setTimeout(() => {
               child.classList.add('animate');
-              child.style.animationDelay = `${index * 0.1}s`;
-            }, index * 100);
+            }, index * 100); // 100ms stagger delay
           });
+          
+          // Unobserve after animation to improve performance
+          observer.unobserve(entry.target);
         }
       });
     }, observerOptions);
@@ -135,8 +152,7 @@ class HomePage {
       ...document.querySelectorAll('.feature-card, .step, .pricing-card')
     ];
 
-    elementsToObserve.forEach((element, index) => {
-      element.style.transitionDelay = `${index * 0.1}s`;
+    elementsToObserve.forEach(element => {
       observer.observe(element);
     });
 
