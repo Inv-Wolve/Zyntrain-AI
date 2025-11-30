@@ -136,6 +136,13 @@ export class ApiService {
     });
   }
 
+  static async resetPassword(token, newPassword) {
+    return this.makeRequest(API_CONFIG.ENDPOINTS.AUTH.RESET_PASSWORD, {
+      method: 'POST',
+      body: JSON.stringify({ token, newPassword })
+    });
+  }
+
   // Task management
   static async getTasks() {
     return this.makeRequest(API_CONFIG.ENDPOINTS.TASKS.BASE);
